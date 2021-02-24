@@ -1,11 +1,14 @@
 import React from 'react';
-import { StyleSheet, View, Text } from 'react-native';
+import { StyleSheet, View, Text, TouchableOpacity } from 'react-native';
 
 const GoalItem = props => {
+    /* .bind() basically calls onDelete with the argument props.id which is eventually passed on to App.js to deleteGoalHandler */
     return (
-        <View>
-            <Text style={styles.listItems}>{props.title}</Text>
-        </View>
+        <TouchableOpacity activeOpacity={0.5} onPress={props.onDelete.bind(this, props.id)}>
+            <View>
+                <Text style={styles.listItems}>{props.title}</Text>
+            </View>
+        </TouchableOpacity>
     );
 }
 

@@ -8,11 +8,16 @@ export default function App() {
   const addGoalHandler = (goalTitle) => {
     setAllGoals((prevGoals) => [...prevGoals, { id: Math.random().toString(), value: goalTitle }]);
   }
+  const deleteGoalHandler = (goalId) => {
+    setAllGoals((prevGoals) => {
+      return prevGoals.filter((goal) => goal.id !== goalId);
+    });
+  }
   return (
     <View style={styles.screen}>
-      <GoalInput onAddGoal={addGoalHandler}/>
+      <GoalInput onAddGoal={addGoalHandler} />
       <FlatList keyExtractor={(item, index) => item.id} data={allGoals} renderItem={(itemData) =>
-        <GoalItem title={itemData.item.value} />
+        <GoalItem id={itemData.item.id} title={itemData.item.value} onDelete={deleteGoalHandler} />
       } />
     </View>
   );
