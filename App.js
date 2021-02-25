@@ -8,6 +8,9 @@ export default function App() {
   const [allGoals, setAllGoals] = useState([]);
   const [addMode, setAddMode] = useState(false);
   const addGoalHandler = (goalTitle) => {
+    if (goalTitle.length === 0) {
+      return;
+    }
     setAllGoals((prevGoals) => [...prevGoals, { id: Math.random().toString(), value: goalTitle }]);
     setAddMode(false); //as we are setting two different states here, all states are updated and rerending happens only once
   }
